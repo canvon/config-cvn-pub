@@ -1,17 +1,17 @@
 # screenrc fragment which sets a sophisticated status bar / caption line
-# Copyright (C) 2002, 2004, 2007  Fabian Pietsch <fabian-conf@zzznowman.dyndns.org>
-# 
+# Copyright (C) 2002, 2004, 2007, 2018  Fabian Pietsch <fabian-config@canvon.de>
+#
 # You may use/modify/redistribute this freely, provided that the name and
 # contact information of the original author as well as this notice are
 # preserved, and modifications are not misrepresented as the original author's.
 #
-# As of 2004-08-15 and 2007-10-13, this file is officially located at:
-# http://zzz.arara.de/software/raw/misc/screenrc
+# This file had been distributed for some time now at [1]. As of 2018-05-05,
+# this is supposed to change to distribution via git repository, soon,
+# with the possible URL of [2]. The previous versions have been imported
+# into the repository.
 #
-# See screenrc-20040815 for the old version, which included the global screenrc
-# example which is distributed with screen.
-#
-# See screenrc-20071013 for the previous version from 2004-08-15.
+# [1] Old: https://www.canvon.de/software/raw/misc/screenrc
+# [2] Planned: https://github.com/canvon/config-cvn-pub
 
 # The statusbar's features include:
 #  o Host name at the left end. (bold if active split region)
