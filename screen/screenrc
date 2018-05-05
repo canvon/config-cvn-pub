@@ -41,11 +41,19 @@
 # The terminal's hardstatus -- in the modern day, this is normally the terminal
 # emulator's X11 window title -- is used as follows:
 #
-#    USER@HOST[ - HARDSTATUS]
+#    USER@HOST: SESSION WINDOWNUMBER WINDOWTITLE[ \[HARDSTATUS\]]
 #
 # Provided the termcapinfo line below is used on other hosts you're using
 # screen on as well, your xterm / rxvt-unicode / ... window title could read
-# something like this: foo@xhost - bar@sshhost - http://... - ELinks
+# something like this:
+#
+#    foo@xhost: ... sshhost [bar@sshhost: ... elinks [http://... - ELinks]]
+#
+# This has been changed 2018-05-05 to (1) not entirely rely on the remote host
+# to communicate a "what's this" information via its hardstatus, but have
+# that information there via local window title (assuming it has been set
+# informatively); and (2) clearly encapsulate what hardstatus came from where,
+# with indication of beginning and end of encapsulated information...
 #
 # To set the hardstatus (for a window) manually, (e.g., after exiting an old
 # version of elinks), run something like the following in that window:
@@ -81,7 +89,10 @@ hardstatus off
 # possibly on a different host, will set a hardstatus for the enclosing screen.
 termcapinfo xterm*|rxvt*|kterm*|Eterm*|screen* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
 # use this for the hard status string
-hardstatus string "$USER@%H%? - %h%?"
+#hardstatus string "%h%? users: %u%?"
+#hardstatus string "$USER@%H%? - %h%?"
+hardstatus string "$USER@%H: %S %n %t%? [%h]%?"
+# ^ Experiment 2016-11-04/-05
 
 # End of being based on Debian's default /etc/screenrc
 
