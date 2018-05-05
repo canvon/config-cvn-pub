@@ -46,7 +46,8 @@
 
 
 # set colors to light gray on light blue
-sorendition 10 74
+#sorendition 10 74
+rendition so "" bw
 
 # set a sophisticated status bar / caption line; see above for explanations
 caption always '%?%F%{!b}%?%H%?%F%{-}%?|%0L=%-Lw%{!b}%50L>%n*%f %t%{-}%+Lw%-12=|%?%F%{!b}%?%m-%d %0c%?%F%{-}%?'
