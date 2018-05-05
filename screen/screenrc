@@ -15,11 +15,26 @@
 
 # The statusbar's features include:
 #  o Host name at the left end. (bold if active split region)
-#  o Date and time (mm-dd HH:MM) at the right end. (bold if active split region)
+#  o Date and time (MONTH-DAY WEEKDAY HOUR:MINUTE) at the right end.
+#    (bold if active split region)  Weekday is padded to 3 chars,
+#    so the time field in cascaded screens with different locale
+#    settings will line up.
 #  o Window numbers, status chars and names in the middle;
 #    if there's not enough space, the list is abbreviated at the left and/or
 #    right end in such a way that the host name, date/time and current window
 #    are always visible. The current window is displayed in bold.
+#
+#  o Since 2018-05-05, the host name part at the left end
+#    is used for additional signaling:
+#
+#     * Background turns cyan when the prefix key has been pressed.
+#     * Background turns yellow when in scrollback/copy mode.
+#
+#    This both is to help avoiding mistakes, especially when using
+#    cascaded screen sessions (local user, root; or local-host, ssh-host,
+#    ssh-host root; etc.) -- It's also nice, then, to see the highlight
+#    moving up through the stack of screen status bars! (on ^A a a ...)
+#
 #  o Since 2007-10-13, the screen window's hardstatus isn't put in the caption
 #    anymore, as it's frequently very long. Instead:
 #
@@ -50,7 +65,11 @@
 rendition so "" bw
 
 # set a sophisticated status bar / caption line; see above for explanations
-caption always '%?%F%{!b}%?%H%?%F%{-}%?|%0L=%-Lw%{!b}%50L>%n*%f %t%{-}%+Lw%-12=|%?%F%{!b}%?%m-%d %0c%?%F%{-}%?'
+#caption always '%?%F%{!b}%?%H%?%F%{-}%?|%0L=%-Lw%{!b}%50L>%n*%f %t%{-}%+Lw%-12=|%?%F%{!b}%?%m-%d %0c%?%F%{-}%?'
+#caption always '%?%P%{.y.}%?%?%E%{.c.}%?%?%F%{+b}%?%H%?%F%{-}%?%?%E%{-}%?%?%P%{-}%?|%0L=%-Lw%{+b}%50L>%n*%f %t%{-}%+Lw%-15=|%?%F%{+b}%?%m-%d %D %0c%?%F%{-}%?'
+# ^ Experiment 2016-11-04/-05
+caption always '%?%P%{.y.}%?%?%E%{.c.}%?%?%F%{+b}%?%H%?%F%{-}%?%?%E%{-}%?%?%P%{-}%?|%0L=%-Lw%{+b}%50L>%n*%f %t%{-}%+Lw%-16=|%?%F%{+b}%?%m-%d %D %-5=%0c'
+# ^ Fix compatible with german (two-letter weekday abbrev.) *and* non-german (three-letter) locale
 
 
 # The following is based on Debian's default /etc/screenrc
